@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaurav's Portfolio</title>
+    <style>
+        /* Modern CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #163660;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #007bff;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #007bff;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* About Section with Video */
+        #about {
+            background: linear-gradient(135deg, #d2a2a2 0%, #1cde91 100%);
+        }
+
+        .about-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 1s forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .video-section {
+            margin-top: 2rem;
+            padding: 1rem 0;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            background: #000;
+        }
+
+        .video-container iframe,
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        /* Heading Styles */
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: #007bff;
+            border-radius: 2px;
+        }
+
+        /* Learning Section */
+        #learning {
+            background: #f8f9fa;
+        }
+
+        .week-container {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .week-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .week-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .week-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .week-content {
+            display: none;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .week-card.active .week-content {
+            display: block;
+        }
+            
+        /* Assignments Section Styles */
+        #assignments {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+        }
+
+        .assignment-week-container {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .assignment-week-header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .assignment-week-content {
+            padding: 20px;
+            background-color: #fff;
+            transition: max-height 0.3s ease-out;
+            max-height: 1000px;
+            overflow: hidden;
+        }
+
+        .assignment-week-content.collapsed {
+            max-height: 0;
+            padding: 0 20px;
+        }
+
+        .upload-section {
+            background-color: #f8f9fa;
+            border: 1px dashed #ccc;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .upload-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .upload-button:hover {
+            background-color: #0056b3;
+        }
+
+        .assignment-list {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+
+        .assignment-item {
+            background-color: white;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .file-icon {
+            color: #007bff;
+            margin-right: 10px;
+        }
+
+        .file-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .file-actions button {
+            background: none;
+            border: none;
+            color: #007bff;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .file-actions button:hover {
+            color: #0056b3;
+        }
+
+        .empty-text {
+            color: #999;
+            font-style: italic;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .arrow {
+            transition: transform 0.3s;
+        }
+
+        .arrow.rotate {
+            transform: rotate(180deg);
+        }
+
+        /* Gallery Section */
+        #gallery {
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        /* Projects Section */
+        #projects {
+            background: #fff;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .project-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: #0056b3;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+        }
+
+        .contact-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-info {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+        }
+
+        .contact-link {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            section {
+                padding: 80px 20px;
+            }
+
+            .about-content,
+            .contact-container {
+                padding: 2rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .video-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#learning">Learning</a>
+                <a href="#assignments">Assignments</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="about" style="background-color: #977620; padding: 60px 0;">
+        <div style="width: 80%; max-width: 1100px; margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 40px;">
+            
+            <!-- Image on Left -->
+            <div style="flex: 1; max-width: 250px; opacity: 0; transform: translateX(-50px); animation: slideIn 1s ease-out forwards;">
+                <img src="samurai-in-a-field-of-flowers-with-mountains-landscape-hdr-anime-style-best-most-popular-free-download-wallpapers-for-macbook-pro-and-macbook-air-and-microsoft-windows-desktop-pcs-4k-07-12-2024-1733638427-hd-wallpaper copy.png" alt=" " style="width: 100%; border-radius: 20px; box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);">
+            </div>
+    
+            <!-- Text on Right -->
+            <div style="flex: 2;">
+                <h2 style="font-size: 32px; margin-bottom: 10px; color: #2c3e50;">About Me</h2>
+                <h3 style="font-size: 24px; margin-bottom: 15px; color: #34495e;">Gaurav singh</h3>
+                <p style="font-size: 16px; line-height: 1.6; color: #4a6572;">
+                    As a passionate and driven Computer Science & Engineering student at GEHU (CSE'27), I am constantly honing my skills in <strong>Data Structures, Algorithms</strong> to build scalable and efficient solutions. With a problem-solving mindset, I have achieved <strong>LeetCode Knight</strong> status and hold a <strong>1-star rating on CodeChef</strong>, consistently pushing myself to tackle complex coding challenges. My interests lie in designing robust software solutions, optimizing performance, and leveraging modern technologies to develop impactful applications. Beyond competitive programming, I enjoy working on real-world projects, collaborating with peers, and exploring innovative approaches to software development. I believe in continuous learning and adaptability, always seeking opportunities to expand my knowledge and contribute to meaningful projects. Whether it's refining algorithms, developing seamless user experiences, or exploring emerging technologies, I am eager to grow as a developer and make a lasting impact in the tech industry.
+                </p>
+            </div>
+        </div>
+    
+        <!-- Animation (Inline CSS) -->
+        <style>
+            @keyframes slideIn {
+                from {
+                    opacity: 0;
+                    transform: translateX(-50px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+            @media (max-width: 768px) {
+                #about div {
+                    flex-direction: column;
+                    text-align: center;
+                }
+                #about div > div:first-child {
+                    max-width: 200px;
+                    margin-bottom: 20px;
+                }
+            }
+        </style>
+    </section>
+    
+
+    <section id="learning">
+        <div class="container">
+            <h2>Learning from PESE Lectures</h2>
+            <div class="week-container">
+                <div class="week-card">
+                    <div class="week-header">
+                        <h3>Week 1</h3>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="week-content">
+                        <p>Participating in the self-introduction exercise was a transformative experience that boosted my confidence and refined my public speaking skills. By speaking in front of my peers, I gradually overcame stage fear and learned to present my experiences and strengths clearly and coherently. This practice not only eased my anxiety about public speaking but also equipped me with a valuable skill for professional interviews, where the ability to articulate one's identity effectively is crucial. Overall, the exercise taught me that clear, confident communication is a key asset in both personal and professional growth.</p>
+                    </div>
+                </div>
+                <div class="week-card">
+                    <div class="week-header">
+                        <h3>Week 2</h3>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="week-content">
+                        <p>During the second week of the lecture, we tackled a variety of questions that are commonly asked in interviews, such as discussing our strengths and weaknesses, recalling compliments we've received, and answering other fundamental queries. This session was incredibly insightful as it not only challenged us to articulate our personal experiences clearly but also helped us reflect on our attributes and areas for improvement. By practicing these responses, I gained a better understanding of how to present myself effectively in high-pressure situations, making me more prepared and confident for future professional interviews.</p>
+                    </div>
+                </div>
+                <div class="week-card">
+                    <div class="week-header">
+                        <h3>Week 3</h3>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="week-content">
+                        <p>[Week 3 summary will go here]</p>
+                    </div>
+                </div>
+                <div class="week-card">
+                    <div class="week-header">
+                        <h3>Week 4</h3>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="week-content">
+                        <p>[Week 4 summary will go here]</p>
+                    </div>
+                </div>
+                <div class="week-card">
+                    <div class="week-header">
+                        <h3>Week 5</h3>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="week-content">
+                        <p>[Week 5 summary will go here]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assignments Section -->
+    <section id="assignments">
+        <div class="container">
+            <h2>My Assignments</h2>
+            
+            <!-- Week 1 -->
+            <div class="assignment-week-container">
+                <div class="assignment-week-header" onclick="toggleAssignmentWeek(1)">
+                    <h3>Week 1</h3>
+                    <span class="arrow" id="assignment-arrow-1">▼</span>
+                </div>
+                <div class="assignment-week-content" id="assignment-week-1">
+                    <h3>Assignments</h3>
+                    <div id="week1-assignments">
+                        <h3 class="video-title">Introduction Video</h3>
+                        <div class="video-container">
+                            <video controls poster="">
+                                <source src="" type="video/mp4">
+                                <source src="" type="video/webm">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="upload-section">
+                        <p>Upload your Week 1 assignments here</p>
+                        <button class="upload-button" onclick="simulateUpload(1)">Upload Files</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 2 -->
+            <div class="assignment-week-container">
+                <div class="assignment-week-header" onclick="toggleAssignmentWeek(2)">
+                    <h3>Week 2</h3>
+                    <span class="arrow" id="assignment-arrow-2">▼</span>
+                </div>
+                <div class="assignment-week-content" id="assignment-week-2">
+                    <h3>Assignments</h3>
+                    <div id="week2-assignments">
+                        <ul class="assignment-list">
+                            <li class="assignment-item">
+                                <div>
+                                    <span class="file-icon">🖼️</span>
+                                    <a href="" target="_blank">
+                                        <img src="" alt="Week 2 Assignment 1" width="150">
+                                    </a>
+                                    <a href="" target="_blank">
+                                        <img src="" alt="Week 2 Assignment 2" width="150">
+                                    </a>
+                                </div>
+                                <div class="file-actions">
+                                    <button onclick="window.open('assets/image1.jpg', '_blank')">👁️ View Image 1</button>
+                                    <button onclick="window.open('assets/image2.jpg', '_blank')">👁️ View Image 2</button>
+                                    <a href="assets/image1.jpg" download>
+                                        <button>⬇️ Download Image 1</button>
+                                    </a>
+                                    <a href="assets/image2.jpg" download>
+                                        <button>⬇️ Download Image 2</button>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="upload-section">
+                        <p>Upload your Week 2 assignments here</p>
+                        <button class="upload-button" onclick="simulateUpload(2)">Upload Files</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Week 3 -->
+            <div class="assignment-week-container">
+                <div class="assignment-week-header" onclick="toggleAssignmentWeek(3)">
+                    <h3>Week 3</h3>
+                    <span class="arrow" id="assignment-arrow-3">▼</span>
+                </div>
+                <div class="assignment-week-content" id="assignment-week-3">
+                    <h3>Assignments</h3>
+                    <div id="week3-assignments">
+                        <p class="empty-text">No assignments uploaded yet.</p>
+                    </div>
+                    <div class="upload-section">
+                        <p>Upload your Week 3 assignments here</p>
+                        <button class="upload-button" onclick="simulateUpload(3)">Upload Files</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 4 -->
+            <div class="assignment-week-container">
+                <div class="assignment-week-header" onclick="toggleAssignmentWeek(4)">
+                    <h3>Week 4</h3>
+                    <span class="arrow" id="assignment-arrow-4">▼</span>
+                </div>
+                <div class="assignment-week-content" id="assignment-week-4">
+                    <h3>Assignments</h3>
+                    <div id="week4-assignments">
+                        <p class="empty-text">No assignments uploaded yet.</p>
+                    </div>
+                    <div class="upload-section">
+                        <p>Upload your Week 4 assignments here</p>
+                        <button class="upload-button" onclick="simulateUpload(4)">Upload Files</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 5 -->
+            <div class="assignment-week-container">
+                <div class="assignment-week-header" onclick="toggleAssignmentWeek(5)">
+                    <h3>Week 5</h3>
+                    <span class="arrow" id="assignment-arrow-5">▼</span>
+                </div>
+                <div class="assignment-week-content" id="assignment-week-5">
+                    <h3>Assignments</h3>
+                    <div id="week5-assignments">
+                        <p class="empty-text">No assignments uploaded yet.</p>
+                    </div>
+                    <div class="upload-section">
+                        <p>Upload your Week 5 assignments here</p>
+                        <button class="upload-button" onclick="simulateUpload(5)">Upload Files</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="container">
+            <h2>Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/300" alt="Professional photo 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/300" alt="Professional photo 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/300" alt="Professional photo 3">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Project 1</h3>
+                        <p class="project-description">[Project description will go here]</p>
+                        <a href="#" class="project-link">Learn More</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Project 2</h3>
+                        <p class="project-description">[Project description will go here]</p>
+                        <a href="#" class="project-link">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="contact-container">
+                <h2>Contact Me</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <a href="mailto:[your-email]" class="contact-link">golurawat151106@gmail.com</a>
+                    </div>
+                   
+                    
+                    <div class="contact-item">
+                        <span>💻</span>
+                        <a href="" class="contact-link">My Github Profile</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>🔗</span>
+                        <a href="" class="contact-link">My Linkedin</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Add click handlers for week cards
+        document.querySelectorAll('.week-card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('active');
+            });
+        });
+
+        // Add toggle function for assignment weeks
+        function toggleAssignmentWeek(weekNum) {
+            const content = document.getElementById(`assignment-week-${weekNum}`);
+            const arrow = document.getElementById(`assignment-arrow-${weekNum}`);
+            
+            content.classList.toggle('collapsed');
+            arrow.classList.toggle('rotate');
+        }
+
+        // Simulate file upload
+        function simulateUpload(weekNum) {
+            const fileTypes = ['PDF', 'DOCX', 'PPTX', 'ZIP'];
+            const fileNames = [
+                'Assignment_Report', 
+                'Project_Submission', 
+                'Research_Paper', 
+                'Lab_Exercise', 
+                'Reflection_Document'
+            ];
+            
+            const randomFile = `${fileNames[Math.floor(Math.random() * fileNames.length)]}_Week${weekNum}.${fileTypes[Math.floor(Math.random() * fileTypes.length)]}`;
+            
+            const assignmentsDiv = document.getElementById(`week${weekNum}-assignments`);
+            
+            // Clear "no assignments" message if it exists
+            if (assignmentsDiv.innerHTML.includes('No assignments uploaded yet')) {
+                assignmentsDiv.innerHTML = '<ul class="assignment-list"></ul>';
+            }
+            
+            const assignmentsList = assignmentsDiv.querySelector('.assignment-list');
+            
+            const newAssignment = document.createElement('li');
+            newAssignment.className = 'assignment-item';
+            newAssignment.innerHTML = `
+                <div>
+                    <span class="file-icon">📄</span>
+                    ${randomFile}
+                </div>
+                <div class="file-actions">
+                    <button onclick="alert('Viewing file: ${randomFile}')">👁️ View</button>
+                    <button onclick="alert('Downloading file: ${randomFile}')">⬇️ Download</button>
+                    <button onclick="this.parentElement.parentElement.remove()">🗑️ Delete</button>
+                </div>
+            `;
+            
+            assignmentsList.appendChild(newAssignment);
+        }
+    </script>
+</body>
+</html>
