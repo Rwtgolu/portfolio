@@ -15,6 +15,8 @@
             line-height: 1.6;
             color: #333;
             background: #000000;
+            background-color: #000;
+            
         }
 
         /* Navigation Styles */
@@ -204,7 +206,7 @@
             display: block;
         }
             
-        /* Assignments Section Styles */
+        /* Assignments Section Styles
         #assignments {
             background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
         }
@@ -320,7 +322,7 @@
 
         .arrow.rotate {
             transform: rotate(180deg);
-        }
+        } */
 
         /* Gallery Section */
         #gallery {

@@ -14,7 +14,7 @@
             <div class="nav-links">
                 <a href="#about">About</a>
                 <a href="#learning">Learning</a>
-                <a href="#assignments">Assignments</a>
+
                 <a href="#gallery">Gallery</a>
                 <a href="#projects">Projects</a>
                 <a href="#contact">Contact</a>
@@ -64,7 +64,11 @@
             }
         </style>
     </section>
-    
+    <section>
+        <div class="pese">
+
+        </div>
+    </section>
 
     <section id="learning">
         <div class="container">
@@ -119,134 +123,8 @@
         </div>
     </section>
 
-    <!-- Assignments Section -->
-    <section id="assignments">
-        <div class="container">
-            <h2>My Assignments</h2>
-            
-            <!-- Week 1 -->
-            <div class="assignment-week-container">
-                <div class="assignment-week-header" onclick="toggleAssignmentWeek(1)">
-                    <h3>Week 1</h3>
-                    <span class="arrow" id="assignment-arrow-1">▼</span>
-                </div>
-                <div class="assignment-week-content" id="assignment-week-1">
-
-                    <div id="week1-assignments">
-                        <h3 class="video-title">Introduction Video</h3>
-                        <div class="video-container">
-                            <video controls poster="">
-                                <source src="" type="video/mp4">
-                                <source src="" type="video/webm">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                    </div>
-                    <div class="upload-section">
-                       
-                        <button class="upload-button" onclick="simulateUpload(1)">Upload Files</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Week 2 -->
-            <div class="assignment-week-container">
-                <div class="assignment-week-header" onclick="toggleAssignmentWeek(2)">
-                    <h3>Week 2</h3>
-                    <span class="arrow" id="assignment-arrow-2">▼</span>
-                </div>
-                <div class="assignment-week-content" id="assignment-week-2">
-                    <h3>Assignments</h3>
-                    <div id="week2-assignments">
-                        <ul class="assignment-list">
-                            <li class="assignment-item">
-                                <div>
-                                   
-                                    <a href="" target="_blank">
-                                        <img src="" alt="Week 2 Assignment 1" width="150">
-                                    </a>
-                                    <a href="" target="_blank">
-                                        <img src="" alt="Week 2 Assignment 2" width="150">
-                                    </a>
-                                </div>
-                                <div class="file-actions">
-                                    <button onclick="window.open('assets/image1.jpg', '_blank')">👁️ View Image 1</button>
-                                    <button onclick="window.open('assets/image2.jpg', '_blank')">👁️ View Image 2</button>
-                                    <a href="assets/image1.jpg" download>
-                                        <button>⬇️ Download Image 1</button>
-                                    </a>
-                                    <a href="assets/image2.jpg" download>
-                                        <button>⬇️ Download Image 2</button>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="upload-section">
-                        <p>Upload your Week 2 assignments here</p>
-                        <button class="upload-button" onclick="simulateUpload(2)">Upload Files</button>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <!-- Week 3 -->
-            <div class="assignment-week-container">
-                <div class="assignment-week-header" onclick="toggleAssignmentWeek(3)">
-                    <h3>Week 3</h3>
-                    <span class="arrow" id="assignment-arrow-3">▼</span>
-                </div>
-                <div class="assignment-week-content" id="assignment-week-3">
-                    <h3>Assignments</h3>
-                    <div id="week3-assignments">
-                        <p class="empty-text">No assignments uploaded yet.</p>
-                    </div>
-                    <div class="upload-section">
-                        <p>Upload your Week 3 assignments here</p>
-                        <button class="upload-button" onclick="simulateUpload(3)">Upload Files</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Week 4 -->
-            <div class="assignment-week-container">
-                <div class="assignment-week-header" onclick="toggleAssignmentWeek(4)">
-                    <h3>Week 4</h3>
-                    <span class="arrow" id="assignment-arrow-4">▼</span>
-                </div>
-                <div class="assignment-week-content" id="assignment-week-4">
-                    <h3>Assignments</h3>
-                    <div id="week4-assignments">
-                        <p class="empty-text">No assignments uploaded yet.</p>
-                    </div>
-                    <div class="upload-section">
-                        <p>Upload your Week 4 assignments here</p>
-                        <button class="upload-button" onclick="simulateUpload(4)">Upload Files</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Week 5 -->
-            <div class="assignment-week-container">
-                <div class="assignment-week-header" onclick="toggleAssignmentWeek(5)">
-                    <h3>Week 5</h3>
-                    <span class="arrow" id="assignment-arrow-5">▼</span>
-                </div>
-                <div class="assignment-week-content" id="assignment-week-5">
-                    <h3>Assignments</h3>
-                    <div id="week5-assignments">
-                        <p class="empty-text">No assignments uploaded yet.</p>
-                    </div>
-                    <div class="upload-section">
-                        <p>Upload your Week 5 assignments here</p>
-                        <button class="upload-button" onclick="simulateUpload(5)">Upload Files</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+  
+    
    
 
     <section id="projects">
@@ -351,26 +229,26 @@
             
             assignmentsList.appendChild(newAssignment);
         }
-        function triggerFly() {
-      const superman = document.getElementById('superman');
-      superman.classList.remove('fly'); // reset
-      void superman.offsetWidth; // reflow
-      superman.classList.add('fly');
+    //     function triggerFly() {
+    //   const superman = document.getElementById('superman');
+    //   superman.classList.remove('fly'); // reset
+    //   void superman.offsetWidth; // reflow
+    //   superman.classList.add('fly');
 
-      const trailInterval = setInterval(() => {
-        const trail = document.createElement('div');
-        trail.className = 'trail';
-        trail.style.left = (superman.getBoundingClientRect().left + 60) + 'px';
-        trail.style.top = (superman.getBoundingClientRect().top + 60) + 'px';
-        document.body.appendChild(trail);
-        setTimeout(() => trail.remove(), 1000);
-      }, 100);
+    //   const trailInterval = setInterval(() => {
+    //     const trail = document.createElement('div');
+    //     trail.className = 'trail';
+    //     trail.style.left = (superman.getBoundingClientRect().left + 60) + 'px';
+    //     trail.style.top = (superman.getBoundingClientRect().top + 60) + 'px';
+    //     document.body.appendChild(trail);
+    //     setTimeout(() => trail.remove(), 1000);
+    //   }, 100);
 
-      setTimeout(() => clearInterval(trailInterval), 4000);
-    }
+    //   setTimeout(() => clearInterval(trailInterval), 4000);
+    // }
 
-    // Trigger fly on page load
-    window.onload = triggerFly;
+    // // Trigger fly on page load
+    // window.onload = triggerFly;
     </script>
 </body>
 </html>
