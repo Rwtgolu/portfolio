@@ -229,26 +229,26 @@
             
             assignmentsList.appendChild(newAssignment);
         }
-    //     function triggerFly() {
-    //   const superman = document.getElementById('superman');
-    //   superman.classList.remove('fly'); // reset
-    //   void superman.offsetWidth; // reflow
-    //   superman.classList.add('fly');
+        function triggerFly() {
+      const superman = document.getElementById('superman');
+      superman.classList.remove('fly'); // reset
+      void superman.offsetWidth; // reflow
+      superman.classList.add('fly');
 
-    //   const trailInterval = setInterval(() => {
-    //     const trail = document.createElement('div');
-    //     trail.className = 'trail';
-    //     trail.style.left = (superman.getBoundingClientRect().left + 60) + 'px';
-    //     trail.style.top = (superman.getBoundingClientRect().top + 60) + 'px';
-    //     document.body.appendChild(trail);
-    //     setTimeout(() => trail.remove(), 1000);
-    //   }, 100);
+      const trailInterval = setInterval(() => {
+        const trail = document.createElement('div');
+        trail.className = 'trail';
+        trail.style.left = (superman.getBoundingClientRect().left + 60) + 'px';
+        trail.style.top = (superman.getBoundingClientRect().top + 60) + 'px';
+        document.body.appendChild(trail);
+        setTimeout(() => trail.remove(), 1000);
+      }, 100);
 
-    //   setTimeout(() => clearInterval(trailInterval), 4000);
-    // }
+      setTimeout(() => clearInterval(trailInterval), 4000);
+    }
 
-    // // Trigger fly on page load
-    // window.onload = triggerFly;
+    // Trigger fly on page load
+    window.onload = triggerFly;
     </script>
 </body>
 </html>
